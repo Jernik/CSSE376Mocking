@@ -11,7 +11,7 @@ namespace Expedia
         Int32 Miles { get; set; }
 
         String getRoomOccupant(int roomNumber);
-        String getCarLocation(int carNumber);
+        String getCarLocation(int carNumber); 
       
 	}
 }
