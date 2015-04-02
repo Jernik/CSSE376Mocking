@@ -86,10 +86,10 @@ namespace ExpediaTest
         public void TestThatCarDoesGetMileageFromDatabase()
         {
             IDatabase mockDatabase = mocks.StrictMock<IDatabase>();
-            List<Int32> Miles = new List<int>();
+            Int32 Miles = 0;
             for (var i = 0; i < 100; i++)
             {
-                Miles.Add(i);
+                Miles = Miles + 1;
             }
             Expect.Call(mockDatabase.Miles).PropertyBehavior();
             mocks.ReplayAll();
@@ -97,8 +97,16 @@ namespace ExpediaTest
             var target = new Car(10);
             target.Database = mockDatabase;
             int mileage = target.Mileage;
-            Assert.AreEqual(mileage, Miles.Count);
+            Assert.AreEqual(mileage, Miles);
             mocks.VerifyAll();
         }
+        [TestMethod()]
+        public void TestBMWObjectMother()
+        {
+            var target = ObjectMother.BMW();
+            Assert.AreEqual(80, target.getBasePrice());
+            Assert.AreEqual("BMW R8 Sports Car", target.Name);
+        }
+
     }
 }
